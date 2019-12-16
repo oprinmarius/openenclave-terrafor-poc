@@ -116,7 +116,7 @@ packages:
   - nginx
   - python-certbot-nginx
 
-run_cmd:
+runcmd:
   - [ systemctl, daemon-reload ]
   - [ systemctl, enable, nginx.service ]
   - [ systemctl, start, nginx.service ]
