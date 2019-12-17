@@ -7,10 +7,6 @@ terraform {
   }
 }
 
-provider "azurerm" {
-  version = "~> 1.0"
-}
-
 module "network" {
   source              = "Azure/network/azurerm"
   location            = var.location
