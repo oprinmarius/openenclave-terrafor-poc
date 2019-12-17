@@ -11,3 +11,10 @@ module "network-1604acc" {
   resource_group_name = "${var.resource_group_name}"
   vnet_name           = "vnet-1604acc"
 }
+
+module "network-1804nonacc" {
+  source              = "Azure/network/azurerm"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  vnet_name           = "vnet-1804nonacc"
+}
