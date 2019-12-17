@@ -108,3 +108,9 @@ variable "tags" {
 variable "cloudconfig_file" {
   description = "The location of the cloud init configuration file."
 }
+
+# TODO// Maybe use Rolling once out configuration allows for more than 1 instance
+variable "upgrade_policy_mode" {
+  description = "Upgrade policy for virtual Machine Scale Set"
+  default = "Automatic"
+}
