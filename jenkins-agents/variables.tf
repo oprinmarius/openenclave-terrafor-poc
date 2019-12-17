@@ -10,7 +10,7 @@ variable "dns_name" {
 
 variable "location" {
   description = "The location/region where the core network will be created. The full list of Azure regions can be found at https://azure.microsoft.com/regions"
-  default     = "westeurope"
+  default     = "eastus"
 }
 
 variable "vnet_name" {
@@ -46,6 +46,16 @@ variable "tags" {
 variable "vm_size" {
   description = "Specifies the size of the virtual machine."
   default     = "Standard_DS1_V2"
+}
+
+variable "vm_size_acc" {
+  description = "Specifies the size of the virtual machine."
+  default     = "Standard_DC2s"
+}
+
+variable "oeadmin" {
+  description = "Specifies the name of the admin user."
+  default     = "oeadmin"
 }
 
 variable "oeadmin_ssh_pub_key" {
