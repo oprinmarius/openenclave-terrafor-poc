@@ -28,5 +28,5 @@ output "resource_group_name" {
 }
 
 output "jenkins_master_dns" {
-  value = module.jenkins-master.public_ip_dns_name[0]
+  value = element(module.jenkins-master.public_ip_dns_name, 0)
 }

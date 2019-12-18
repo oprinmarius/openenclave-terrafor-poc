@@ -32,7 +32,7 @@ module "jenkins-master" {
   public_ip_dns       = [var.dns_name]
   vm_hostname         = "jenkins-master"
   vm_size             = var.vm_size
-  vnet_subnet_id      = "${module.network.vnet_subnets[0]}"
+  vnet_subnet_id      = element(module.network.vnet_subnets, 0)
   resource_group_name = var.resource_group_name
   custom_data         = data.template_cloudinit_config.jenkins-master.rendered
   data_disk           = true
