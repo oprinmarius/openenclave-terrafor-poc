@@ -117,6 +117,7 @@ packages:
   - python-certbot-nginx
 
 runcmd:
+  - [docker, pull, jenkinsci/blueocean:latest]
   - [ systemctl, daemon-reload ]
   - [ systemctl, enable, nginx.service ]
   - [ systemctl, start, nginx.service ]

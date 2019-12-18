@@ -1,6 +1,6 @@
 variable "resource_group_name" {
   description = "Name of the resource group to create"
-  default     = "OE-Jenkins-terraform-test"
+  default     = "OE-Jenkins-terraform-poc"
 }
 
 variable "dns_name" {
@@ -35,7 +35,6 @@ variable "subnet_names" {
 
 variable "tags" {
   description = "The tags to associate with your network and subnets."
-  type        = "map"
 
   default = {
     environment = "Test"
