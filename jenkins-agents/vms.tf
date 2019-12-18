@@ -14,7 +14,7 @@ module "vmss-1804acc" {
   vm_os_offer                            = "UbuntuServer"
   vm_os_sku                              = "18.04-LTS"
   vm_os_version                          = "latest"
-  vnet_subnet_id                         = "${module.network-1804acc.vnet_subnets[0]}"
+  vnet_subnet_id                         = "${module.network.vnet_subnets[0]}"
   load_balancer_backend_address_pool_ids = "${module.lb-1804acc.azurerm_lb_backend_address_pool_id}"
 }
 
@@ -33,7 +33,7 @@ module "vmss-1604acc" {
   vm_os_offer                            = "confidential-compute-preview"
   vm_os_sku                              = "16.04-LTS"
   vm_os_version                          = "latest"
-  vnet_subnet_id                         = "${module.network-1604acc.vnet_subnets[0]}"
+  vnet_subnet_id                         = "${module.network.vnet_subnets[0]}"
   load_balancer_backend_address_pool_ids = "${module.lb-1604acc.azurerm_lb_backend_address_pool_id}"
 }
 
@@ -52,7 +52,7 @@ module "vmss-1804nonacc" {
   vm_os_offer                            = "UbuntuServer"
   vm_os_sku                              = "18.04-LTS"
   vm_os_version                          = "latest"
-  vnet_subnet_id                         = "${module.network-1804nonacc.vnet_subnets[0]}"
+  vnet_subnet_id                         = "${module.network.vnet_subnets[0]}"
   load_balancer_backend_address_pool_ids = "${module.lb-1804nonacc.azurerm_lb_backend_address_pool_id}"
 }
 
@@ -71,7 +71,7 @@ module "vmss-2016acc" {
   vm_os_offer                            = "confidential-compute-preview"
   vm_os_sku                              = "acc-windows-server-2016-datacenter"
   vm_os_version                          = "latest"
-  vnet_subnet_id                         = "${module.network-2016acc.vnet_subnets[0]}"
+  vnet_subnet_id                         = "${module.network.vnet_subnets[0]}"
   load_balancer_backend_address_pool_ids = "${module.lb-2016acc.azurerm_lb_backend_address_pool_id}"
 }
 
@@ -90,7 +90,7 @@ module "vmss-2016sgx" {
   vm_os_offer                            = "confidential-compute-preview"
   vm_os_sku                              = "acc-windows-server-2016-datacenter"
   vm_os_version                          = "latest"
-  vnet_subnet_id                         = "${module.network-2016sgx.vnet_subnets[0]}"
+  vnet_subnet_id                         = "${module.network.vnet_subnets[0]}"
   load_balancer_backend_address_pool_ids = "${module.lb-2016sgx.azurerm_lb_backend_address_pool_id}"
 }
 
@@ -109,6 +109,6 @@ module "vmss-2016nonsgx" {
   vm_os_offer                            = "confidential-compute-preview"
   vm_os_sku                              = "acc-windows-server-2016-datacenter"
   vm_os_version                          = "latest"
-  vnet_subnet_id                         = "${module.network-2016nonsgx.vnet_subnets[0]}"
+  vnet_subnet_id                         = "${module.network.vnet_subnets[0]}"
   load_balancer_backend_address_pool_ids = "${module.lb-2016nonsgx.azurerm_lb_backend_address_pool_id}"
 }

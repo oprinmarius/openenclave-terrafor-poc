@@ -24,8 +24,8 @@ resource "azurerm_lb" "azlb" {
     name                          = "${var.frontend_name}"
     public_ip_address_id          = "${var.type == "public" ? join("",azurerm_public_ip.azlb.*.id) : ""}"
     subnet_id                     = "${var.frontend_subnet_id}"
-    private_ip_address            = "${var.frontend_private_ip_address}"
-    private_ip_address_allocation = "${var.frontend_private_ip_address_allocation}"
+    private_ip_address            = "${var.private_ip_address}"
+    private_ip_address_allocation = "${var.private_ip_address_allocation}"
   }
 }
 

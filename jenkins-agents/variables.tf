@@ -65,7 +65,7 @@ variable "oeadmin_password" {
 
 variable "nb_instance" {
   description = "Specify the number of vm instances"
-  default     = "1"
+  default     = "2"
 }
 
 variable "oeadmin_ssh_pub_key" {

@@ -53,7 +53,7 @@ variable "tags" {
 variable "type" {
   type        = "string"
   description = "(Optional) Defined if the loadbalancer is private or public"
-  default     = "public"
+  default     = "private"
 }
 
 variable "frontend_subnet_id" {
@@ -61,12 +61,12 @@ variable "frontend_subnet_id" {
   default     = ""
 }
 
-variable "frontend_private_ip_address" {
+variable "private_ip_address" {
   description = "(Optional) Private ip address to assign to frontend. Use it with type = private"
   default     = ""
 }
 
-variable "frontend_private_ip_address_allocation" {
+variable "private_ip_address_allocation" {
   description = "(Optional) Frontend ip allocation type (Static or Dynamic)"
   default     = "Dynamic"
 }
