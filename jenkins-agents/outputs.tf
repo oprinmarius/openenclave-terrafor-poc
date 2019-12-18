@@ -21,3 +21,7 @@ output "vmss_id-2016sgx" {
 output "vmss_id-2016nonsgx" {
   value = "${module.vmss-2016nonsgx.vmss_win_id}"
 }
+
+output "linux_vm_public_name"{
+  value = "${module.jenkins-master.public_ip_dns_name}"
+}
