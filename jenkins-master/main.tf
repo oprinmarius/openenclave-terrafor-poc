@@ -1,12 +1,3 @@
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "OE-Jenkins-CI-westeurope"
-    storage_account_name = "oejenkinswesteurope"
-    container_name       = "tfstate"
-    key                  = "oe-terraform-test/jenkins-master/terraform.tfstate"
-  }
-}
-
 module "network" {
   source              = "Azure/network/azurerm"
   location            = var.location
@@ -26,8 +17,8 @@ data "template_cloudinit_config" "jenkins-master" {
     content_type = "text/cloud-config"
     content = templatefile("${path.module}/cloud-init.tpl",
       {
-        jenkins_master_dns = var.dns_name
-        location           = var.location
+        jenkins_master_dns  = var.dns_name
+        location            = var.location
         oeadmin_ssh_pub_key = file(var.oeadmin_ssh_pub_key)
       }
     )
@@ -35,7 +26,7 @@ data "template_cloudinit_config" "jenkins-master" {
 }
 
 module "jenkins-master" {
-  source              = "Azure/compute/azurerm"
+  source              = "../modules/terraform-azurerm-compute"
   location            = var.location
   vm_os_simple        = "UbuntuServer"
   public_ip_dns       = [var.dns_name]
@@ -46,4 +37,18 @@ module "jenkins-master" {
   custom_data         = data.template_cloudinit_config.jenkins-master.rendered
   data_disk           = true
   data_disk_size_gb   = 200
+  security_group_predefined_rules    = [
+    {
+      name     = "SSH"
+      priority = "500"
+    },
+    {
+      name     = "HTTPS"
+      priority = "100"
+    },
+    {
+      name     = "HTTP"
+      priority = "200"
+    },
+  ]
 }

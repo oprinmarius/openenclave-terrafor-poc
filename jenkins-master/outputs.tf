@@ -22,3 +22,11 @@ output "vnet_subnets" {
   description = "The ids of subnets created inside the Jenkins vNet"
   value       = module.network.vnet_subnets
 }
+
+output "resource_group_name" {
+  value = var.resource_group_name
+}
+
+output "jenkins_master_dns" {
+  value = module.jenkins-master.public_ip_dns_name[0]
+}
