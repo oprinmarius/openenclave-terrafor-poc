@@ -58,7 +58,7 @@
 
 module "vmss-2016acc" {
   source                                 = "modules/vmss"
-  vmscaleset_name                        = "1804nonacc"
+  vmscaleset_name                        = "2016acc"
   resource_group_name                    = "${var.resource_group_name}"
   cloudconfig_file                       = "${path.module}/cloud-init.tpl"
   location                               = "${var.location}"
