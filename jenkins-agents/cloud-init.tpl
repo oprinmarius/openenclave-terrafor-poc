@@ -23,7 +23,7 @@ users:
       - ALL=(ALL) NOPASSWD:ALL
     groups: docker
     ssh_authorized_keys:
-      - "${oeadmin_ssh_pub_key}"
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDHgGBI68diMhO1v0Uz961KAiP4KR1W7EUTqtLOxR0qhsOzfnKZDuxbgsRXvZOYhqReBtig8zZrW6nUbBeo9wTKkw4B1/uFyFf4EShLlXMZSMYAtEa0JsLPjGBrcHY39BTVIlG/PtSG0yiTTgqcdnACZ40MvUrr65Vx7M0a3PVZLQJMh7vVhdem9XoUAFnOFGkHoO3OJo6PQ1m7z+x7+saGLEzT5h+Z6oScYCgjTAkzcuWU2SIuKWL5LvRa6NUIpuQ1eBUz94GrWZgCG29i6vt6cARUXUzPaW0TpJdvYgrmu4Ymb+NZQ1U8klYGvrJPhdBEqSHD2aJ5Bk9VbLV7om488J6P3hUW1OceUfO/6OZ+ls1486JaRJ0g2QVcc5zBo+QM6FK1ZovlCHYYiYLu2gTXuyol4JqZsRtyzvI1kZAXGvwAb1CThtFHT8FhMuHX/s7hQuUFcU+xc0G3YrodttfjcRsDwS5zpXaB0zovchedgCsORsyAnR9STBR0V2+/y14GXgKG82+KzCpdE1o8r3fsPXK2VHzeafu+YmwQiUJ/yQnUJXoL2Vg3TbuICnqX6axB3iceZketXBfuCYgmPPzB3SWVvTytl7qN6lEb6ZeBEM4wugQqRskko5xkhFDf2Qcbfr62QQEhrE6dmBzaEq4rJKivOJVVc2UthfjNUFIPOw== brmclare@microsoft.com"
   - name: jenkins
     gecos: Jenkins user
     primary_group: jenkins
@@ -68,8 +68,8 @@ write_files:
 
           listen 443;
           server_name oe-jenkins.eastus.cloudapp.azure.com;
-          ssl_certificate /etc/letsencrypt/live/${jenkins_master_dns}.${location}.cloudapp.azure.com/fullchain.pem; # managed by Certbot
-          ssl_certificate_key /etc/letsencrypt/live/${jenkins_master_dns}.${location}.cloudapp.azure.com/privkey.pem; # managed by Certbot
+          ssl_certificate /etc/letsencrypt/live/oe-jenkins-tf.eastus.cloudapp.azure.com/fullchain.pem; # managed by Certbot
+          ssl_certificate_key /etc/letsencrypt/live/oe-jenkins-tf.eastus.cloudapp.azure.com/privkey.pem; # managed by Certbot
 
           ssl on;
           ssl_session_cache  builtin:1000  shared:SSL:10m;
@@ -90,7 +90,7 @@ write_files:
             proxy_pass          http://localhost:8080;
             proxy_read_timeout  90;
 
-            proxy_redirect      http://localhost:8080 https://${jenkins_master_dns}.${location}.cloudapp.azure.com;
+            proxy_redirect      http://localhost:8080 https://oe-jenkins-tf.eastus.cloudapp.azure.com;
           }
       }
 
@@ -122,7 +122,7 @@ runcmd:
   - [ systemctl, start, nginx.service ]
   - [ systemctl, enable, jenkins.service ]
   - [ systemctl, start, jenkins.service ]
-  - [ certbot, --nginx, -d, ${jenkins_master_dns}.${location}.cloudapp.azure.com, --non-interactive, --agree-tos, -m, oeciteam@microsoft.com  ]
+  - [ certbot, --nginx, -d, oe-jenkins-tf.eastus.cloudapp.azure.com, --non-interactive, --agree-tos, -m, oeciteam@microsoft.com  ]
   - [ ln, -sfn, /etc/nginx/sites-available/jenkins, /etc/nginx/sites-available/default ]
   - [ systemctl, restart, nginx.service ]
 
