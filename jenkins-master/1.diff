@@ -1,0 +1,24 @@
+diff --git a/jenkins-master/main.tf b/jenkins-master/main.tf
+index 27ab754..d06e0ee 100644
+--- a/jenkins-master/main.tf
++++ b/jenkins-master/main.tf
+@@ -32,7 +32,7 @@ module "jenkins-master" {
+   public_ip_dns       = [var.dns_name]
+   vm_hostname         = "jenkins-master"
+   vm_size             = var.vm_size
+-  vnet_subnet_id      = "${module.network.vnet_subnets[0]}"
++  vnet_subnet_id      = element(module.network.vnet_subnets, 0)
+   resource_group_name = var.resource_group_name
+   custom_data         = data.template_cloudinit_config.jenkins-master.rendered
+   data_disk           = true
+diff --git a/jenkins-master/outputs.tf b/jenkins-master/outputs.tf
+index e6d7444..bc8e067 100644
+--- a/jenkins-master/outputs.tf
++++ b/jenkins-master/outputs.tf
+@@ -28,5 +28,5 @@ output "resource_group_name" {
+ }
+ 
+ output "jenkins_master_dns" {
+-  value = module.jenkins-master.public_ip_dns_name[0]
++  value = element(module.jenkins-master.public_ip_dns_name, 0)
+ }
