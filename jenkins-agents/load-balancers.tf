@@ -5,7 +5,7 @@ module "lb-1804acc" {
   prefix              = "1804acc"
   frontend_subnet_id                     = "${module.network.vnet_subnets[0]}"
   private_ip_address_allocation = "Static"
-  private_ip_address            = "10.0.1.6"
+  private_ip_address            = "10.0.1.5"
 
 
   remote_port = {
@@ -24,7 +24,7 @@ module "lb-1604acc" {
   prefix              = "1604acc"
   frontend_subnet_id                     = "${module.network.vnet_subnets[0]}"
   private_ip_address_allocation = "Static"
-  private_ip_address            = "10.0.1.7"
+  private_ip_address            = "10.0.1.6"
 
 
   remote_port = {
@@ -43,7 +43,7 @@ module "lb-1804nonacc" {
   prefix              = "1804nonacc"
   frontend_subnet_id                     = "${module.network.vnet_subnets[0]}"
   private_ip_address_allocation = "Static"
-  private_ip_address            = "10.0.1.8"
+  private_ip_address            = "10.0.1.7"
 
 
   remote_port = {
@@ -62,7 +62,7 @@ module "lb-2016acc" {
   prefix              = "2016acc"
   frontend_subnet_id                     = "${module.network.vnet_subnets[0]}"
   private_ip_address_allocation = "Static"
-  private_ip_address            = "10.0.1.9"
+  private_ip_address            = "10.0.1.8"
 
 
   remote_port = {
@@ -81,7 +81,7 @@ module "lb-2016sgx" {
   prefix              = "2016sgx"
   frontend_subnet_id                     = "${module.network.vnet_subnets[0]}"
   private_ip_address_allocation = "Static"
-  private_ip_address            = "10.0.1.10"
+  private_ip_address            = "10.0.1.9"
 
 
   remote_port = {
@@ -100,7 +100,7 @@ module "lb-2016nonsgx" {
   prefix              = "2016nonsgx"
   frontend_subnet_id                     = "${module.network.vnet_subnets[0]}"
   private_ip_address_allocation = "Static"
-  private_ip_address            = "10.0.1.11"
+  private_ip_address            = "10.0.1.10"
 
 
   remote_port = {

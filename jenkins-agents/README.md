@@ -8,3 +8,6 @@ TODO:
 Upgrade to 0.12.*
 Launch with VHDs
 Connect Jenkins To Agents
+
+Stretch:
+Configure Auto scaling when CPU or Memory use is above 70%
