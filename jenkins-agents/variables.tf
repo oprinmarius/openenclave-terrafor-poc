@@ -22,10 +22,31 @@ variable "vm_size" {
   default     = "Standard_DS1_V2"
 }
 
+variable "vm_size_acc" {
+  description = "Specifies the size of the acc virtual machine."
+  default     = "Standard_DC2s"
+}
+
 variable "oeadmin_ssh_pub_key" {
   description = "Path to the public key to be used for ssh access to the VM.  Only used with non-Windows vms and can be left as-is even if using Windows vms. If specifying a path to a certification on a Windows machine to provision a linux vm use the / in the path versus backslash. e.g. c:/home/id_rsa.pub"
 }
 
 variable "bionic_blob_uri" {
   default = "https://oejenkinswesteurope.blob.core.windows.net/disks/2019-November-21-jenkins-agent-ubuntu-18.04.vhd"
+}
+
+variable "xenial_blob_uri" {
+  default = "https://oejenkinswesteurope.blob.core.windows.net/disks/2019-November-21-jenkins-agent-ubuntu-18.04.vhd"
+}
+
+variable "win2016ACC_blob_uri" {
+  default = "https://oejenkinswesteurope.blob.core.windows.net/disks/2019-November-21-jenkins-agent-win-dcap.vhd"
+}
+
+variable "win2016SGX_blob_uri" {
+  default = "https://oejenkinswesteurope.blob.core.windows.net/disks/2019-November-21-jenkins-agent-win-2016.vhd"
+}
+
+variable "win2016nonSGX_blob_uri" {
+  default = "https://oejenkinswesteurope.blob.core.windows.net/disks/2019-November-21-jenkins-agent-win-2016.vhd"
 }

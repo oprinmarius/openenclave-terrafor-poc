@@ -40,6 +40,7 @@ resource "azurerm_image" "custom-image" {
 }
 
 resource "azurerm_virtual_machine_scale_set" "agents" {
+  count               = 2
   name                = local.vmss_name
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -52,7 +53,10 @@ resource "azurerm_virtual_machine_scale_set" "agents" {
   }
 
   storage_profile_image_reference {
-    id = azurerm_image.custom-image.id
+    publisher                        = "MicrosoftWindowsServer"
+    offer                            = "confidential-compute-preview"
+    sku                              = "acc-windows-server-2016-datacenter"
+    version                          = "latest"
   }
 
   storage_profile_os_disk {
@@ -72,16 +76,12 @@ resource "azurerm_virtual_machine_scale_set" "agents" {
   os_profile {
     computer_name_prefix = local.computer_name_prefix
     admin_username       = "oeadmin"
-    custom_data          = data.template_cloudinit_config.config.rendered
+    admin_password       = var.admin_password
+    #custom_data          = data.template_cloudinit_config.config.rendered
   }
 
-  os_profile_linux_config {
-    disable_password_authentication = true
-
-    ssh_keys {
-      path     = "/home/oeadmin/.ssh/authorized_keys"
-      key_data = file(var.oeadmin_ssh_pub_key)
-    }
+  os_profile_windows_config {
+    enable_automatic_upgrades = false
   }
 
   network_profile {
